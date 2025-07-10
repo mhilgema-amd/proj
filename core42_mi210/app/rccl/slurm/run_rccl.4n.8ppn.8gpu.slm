@@ -1,0 +1,307 @@
+#!/bin/bash
+#SBATCH -J all_reduce_perf.g42.hermes-2.4n.8ppn.8gpu
+#SBATCH -o %x.%N.o%j
+#SBATCH -N 4
+#SBATCH -n 32
+#SBATCH -c 16
+#SBATCH --gres=gpu:8
+#SBATCH -p hermes-2
+#SBATCH -t 10:00
+#SBATCH --mail-user=martin.hilgeman@amd.com
+#SBATCH --mail-type=begin  # email me when the job starts
+#SBATCH --mail-type=end    # email me when the job finishes
+#SBATCH --exclusive
+#
+
+alias mytime='/usr/bin/time -f "Elapsed: %e  User: %U  System: %S  PageF: %F"'
+shopt -s expand_aliases
+set -o pipefail
+
+#
+# Definition of the environment
+#
+function init_env()
+{
+    #
+    #
+    # Edit PREFIX to the directory where you unpacked the archive
+    #
+    APP=rccl
+    COMPILER=gcc114
+    MPI=openmpi
+    FRAMEWORK=rocm633
+    VERSION=default
+
+    #
+    # Directory with custom Slurm prologue/epilogue/profiling scripts
+    #
+    # SCRIPT_DIR is used by other scripts, needs to be exported
+    #
+    export SCRIPT_DIR="${HOME}/martinh/app/slurm/bin"
+
+    #
+    # Number of MPI ranks
+    # set it to 1 per CCX for a single node run
+    #
+    NPES=${SLURM_NTASKS}
+    NNODES=${SLURM_NNODES}
+    PPN=$((NPES / NNODES))
+    NGPUS=${SLURM_GPUS_ON_NODE:-${PPN}}
+    OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
+
+    #
+    # Standard paths
+    #
+    # PREFIX and SCR are used by other scripts, need to be exported
+    #
+    export PREFIX=${HOME}/martinh/app/${APP}
+    INPD=${PREFIX}/inp
+    INP="${INPD}/HPL.dat"
+    export SCR="${HOME}/martinh/scratch/${APP}/${SLURM_JOB_ID}"
+}
+
+#
+# Load modules
+#
+function load_modules ()
+{
+    if which module; then
+        if [ -d ${HOME}/opt/modulefiles ]; then
+            module use ${HOME}/opt/modulefiles
+        fi
+        MOD=${APP}/${COMPILER}/${MPI}/${FRAMEWORK}/${VERSION}
+        if module is-avail ${MOD}; then
+            module load ${MOD}
+        else
+            echo "Unable to find module ${MOD}. Exiting"
+            exit 1
+        fi
+        module list
+    else
+        . ${HOME}/martinh/env.sh || exit 1
+    fi
+
+    echo "#### LD_LIBRARY_PATH ####"
+    echo ${LD_LIBRARY_PATH}
+}
+
+#
+# Initialize the job environment and setup the nodes
+#
+function init_job ()
+{
+    #
+    #
+    # List of nodes
+    echo "#### Node list ####"
+    scontrol show hostnames
+}
+
+#
+# Set scratch directory
+#
+function setup_scratch ()
+{
+    if [ ! -d "${SCR}" ]; then
+        mkdir -p "${SCR}" || exit 1
+    fi
+    cd "${SCR}" || exit 1
+
+    #
+    # Copy input files
+    #
+}
+
+#
+# Setup the environment (Application/MPI/UCX/...)
+#
+function setup_env ()
+{
+    #
+    # MPI
+    #
+    MPIRUN="mpirun"
+    MPI_ARGS="${MPI_ARGS} -np ${NPES}"
+    #MPI_ARGS="${MPI_ARGS} --bind-to none"
+    #MPI_ARGS="${MPI_ARGS} --mca coll_hcoll_enable 0"
+    #MPI_ARGS="${MPI_ARGS} --mca psec ^munge"
+    #MPI_ARGS="${MPI_ARGS} --mca pml ucx"
+
+    #
+    # UCX stuff
+    #
+    #MPI_ARGS="${MPI_ARGS} -x UCX_TLS=self,sm,rocm_copy,rocm_ipc,ud_verbs"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_RNDV_THRESH=32768"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_IB_GID_INDEX=3"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_PROTO_INFO=n"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_PROTO_ENABLE=y"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_UNIFIED_MODE=y"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_ROCM_COPY_LAT=2e-6"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_ROCM_IPC_MIN_ZCOPY=4096"
+    #MPI_ARGS="${MPI_ARGS} -x UCX_RNDV_SCHEME=get_zcopy"
+
+    #
+    # AMD GPU setttings
+    #
+    #export ROCR_VISIBLE_DEVICES=0,1
+
+    #
+    # Affinity
+    #
+    AFFINITY=
+    unset SLURM_CPU_BIND
+
+    #
+    # Application specific stuff
+    #
+    EXE=all_reduce_perf
+    EXE_ARGS="-b 8 -e 4G -f 2 -g 1"
+
+    #
+    # NCCL/RCCL
+    #
+    export UCX_IB_GID_INDEX=3
+    export NCCL_IB_GID_INDEX=3
+    export NCCL_NET_GDR_LEVEL=3
+    export NCCL_IB_PCI_RELAXED_ORDERING=1
+    export HSA_DISABLE_CACHE=1
+    export HSA_FORCE_FINE_GRAIN_PCIE=1
+    export HIP_FORCE_DEV_KERNARG=1
+    export NCCL_NET_SHARED_BUFFERS=0
+    export NCCL_SOCKET_IFNAME=enp69s0f0np0,ens4f0np0,enp135s0f0np0,enp133s0f0np0
+    export NCCL_IB_HCA=rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+    export NCCL_MIN_NCHANNELS=12
+    export NCCL_MAX_NCHANNELS=12
+    export NCCL_DEBUG="VERSION"
+    #export NCCL_DEBUG_SUBSYS="INIT,COLL"
+    export NCCL_RINGS="\
+        N1 2 3 0 1 4 5 6 7 N3|\
+        N0 1 0 3 2 7 6 4 5 N2|\
+        N0 0 1 2 3 6 5 7 4 N2|\
+        N1 3 2 1 0 5 7 4 6 N3|\
+        N3 7 6 5 4 1 0 3 2 N1|\
+        N2 5 4 6 7 2 3 0 1 N0|\
+        N2 4 7 5 6 3 2 1 0 N0|\
+        N3 6 4 7 5 0 1 2 3 N1|"
+
+}
+
+#
+# Write node configuration to disk
+#
+function dump_system_info ()
+{
+    SYSINFO="${SCRIPT_DIR}/my_sysinfo.sh"
+    if [ ! -f "${SYSINFO}" ]; then
+        echo "SYSINFO script ${SYSINFO} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "RUNNING SYSINFO script ${SYSINFO} in the background ..."
+    srun -N ${NNODES} -n ${NNODES} ${SYSINFO}
+}
+
+#
+# Job prologue to setup nodes properly
+#
+function run_prologue ()
+{
+    PROLOGUE="${SCRIPT_DIR}/prologue.sh"
+    if [ ! -f "${PROLOGUE}" ]; then
+        echo "Prologue script ${PROLOGUE} does not exist. Exiting."
+        exit 1
+    fi
+
+    #
+    # Settings for prologue script
+    #
+    export BOOST_EN=1
+    export CPU_CLK_MAX=3700MHz
+    export SCLK_MAX=2100
+    export SCLK_MIN=2000
+
+    echo "RUNNING PROLOGUE script ${PROLOGUE}"
+    srun -N ${NNODES} -n ${NNODES} ${PROLOGUE} || exit 1
+} 
+
+#
+# Run the application
+#
+function run_app ()
+{
+    #
+    # Store environment
+    #
+    env > ${SCR}/env.txt 2>&1
+
+    #
+    # ldd of the executable
+    #
+    echo
+    echo "ldd $( which ${EXE} )"
+    ldd $( which ${EXE} )
+
+    RUNCMD="${MPIRUN} ${MPI_ARGS} ${AFFINITY} ${EXE} ${EXE_ARGS}"
+    echo
+    echo "${RUNCMD}"
+    mytime ${RUNCMD} 2>&1 | tee stdout.${APP}.${SLURM_JOB_ID}
+}
+
+#
+# Start the PM log
+#
+function start_agt ()
+{
+    AGT="${SCRIPT_DIR}/my_agt.sh"
+    export AGT_JOBNAME="my_agt_job.${SLURM_JOB_ID}"
+    touch ${SCR}/${AGT_JOBNAME}
+
+    if [ ! -f "${AGT}" ]; then
+        echo "AGT script ${AGT} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo -ne "RUNNING AGT script ${AGT} with job name ${AGT_JOBNAME} in the background ...\n"
+    srun --job-name=${AGT_JOBNAME} -N ${NNODES} -n ${NNODES} ${AGT} &
+}
+
+#
+# Stop the PM log
+#
+function stop_agt ()
+{
+    if [ ! -f "${AGT}" ]; then
+        echo "AGT script ${AGT} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "STOPPING AGT script ${AGT} ..."
+    rm ${SCR}/${AGT_JOBNAME}
+}
+
+#
+# Job epilogue to setup nodes properly
+#
+function run_epilogue ()
+{
+    EPILOGUE="${SCRIPT_DIR}/epilogue.sh"
+    if [ ! -f "${EPILOGUE}" ]; then
+        echo "Epilogue script ${EPILOGUE} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "RUNNING EPILOGUE script ${EPILOGUE}"
+    srun -N ${NNODES} -n ${NNODES} ${EPILOGUE} || exit 1
+} 
+
+init_env
+load_modules
+init_job
+setup_scratch
+setup_env
+dump_system_info
+#run_prologue
+#start_agt
+run_app
+#stop_agt
+#run_epilogue

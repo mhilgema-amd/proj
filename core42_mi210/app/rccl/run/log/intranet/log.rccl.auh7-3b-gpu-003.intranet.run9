@@ -1,0 +1,21 @@
+# nThread 1 nGpus 1 minBytes 8 maxBytes 4294967296 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+rccl-tests: Version develop:5b27b96
+# Using devices
+#  Rank  0 Group  0 Pid  13425 on auh7-3b-gpu-003 device  0 [0000:47:00] AMD Instinct MI210
+#  Rank  1 Group  0 Pid  13417 on auh7-3b-gpu-003 device  1 [0000:4a:00] AMD Instinct MI210
+#  Rank  2 Group  0 Pid  13418 on auh7-3b-gpu-003 device  2 [0000:05:00] AMD Instinct MI210
+#  Rank  3 Group  0 Pid  13420 on auh7-3b-gpu-003 device  3 [0000:08:00] AMD Instinct MI210
+#  Rank  4 Group  0 Pid  13419 on auh7-3b-gpu-003 device  4 [0000:c5:00] AMD Instinct MI210
+#  Rank  5 Group  0 Pid  13421 on auh7-3b-gpu-003 device  5 [0000:c8:00] AMD Instinct MI210
+#  Rank  6 Group  0 Pid  13422 on auh7-3b-gpu-003 device  6 [0000:85:00] AMD Instinct MI210
+#  Rank  7 Group  0 Pid  13423 on auh7-3b-gpu-003 device  7 [0000:88:00] AMD Instinct MI210
+RCCL version : 2.21.5-HEAD:9a0e6a1
+HIP version  : 6.3.42134-a9a80e791
+ROCm version : 6.3.3.0-74-cbc70b5
+Hostname     : auh7-3b-gpu-003
+Librccl path : /opt/rocm/lib/librccl.so.1
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       

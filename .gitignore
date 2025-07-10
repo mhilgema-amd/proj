@@ -1,0 +1,107 @@
+# Compiled source files
+*.o
+*.ko
+*.a
+*.so
+*.elf
+*.dwo
+*.dSYM/ # macOS debug symbols
+
+# Logs and temporary files
+*.tmp
+*.swp
+*.swo
+*~
+*.bak
+*.core
+core.*
+
+# Build artifacts
+autom4te.cache/
+build/
+CMakeFiles/
+CMakeCache.txt
+config.log
+config.status
+git/
+obj/
+dist/
+Makefile.in
+Makefile.am
+src/
+test/
+tmp/
+work/
+
+# QE benchmarks directory
+qe/inp/benchmarks/
+
+# Slurm job outputs
+*.o[0-9]*
+
+# Skip singularity images
+*.sif
+
+# Profiling logs
+*.csv
+
+# Ignore application input files
+inp/
+
+# Scratch space
+scr/
+scratch/
+[0-9]*/
+
+# Ignore rocm-examples
+rocm-examples/
+
+# Dependency directories
+node_modules/ # Node.js
+vendor/ # Go, PHP, etc.
+venv/ # Python virtual environments
+env/ # Python virtual environments
+.venv/ # Python virtual environments
+__pycache__/ # Python cache directories
+*.egg-info/ # Python egg info
+*.egg # Python egg
+.env # Environment variables
+.npm # npm cache
+.yarn-integrity # Yarn cache
+
+# Editor/IDE specific files
+.idea/ # IntelliJ IDEA
+.vscode/ # VS Code
+*.cbp # Code::Blocks
+*.project # Qt Creator
+*.workspace # Qt Creator
+*.kdev4 # KDevelop
+*.kate-swp # Kate editor swap files
+
+# OS generated files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Secrets
+*.key
+*.pem
+*.p12
+
+# Distribution files
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+
+# Specific project files you want to ignore
+# Example: configuration files
+# config/database.conf
+
+# pictures/images
+*.jpg
+*.png
+
+# Office files
+*.docx
+*.pptx
+*.xlsx

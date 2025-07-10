@@ -1,0 +1,545 @@
+# nThread 1 nGpus 1 minBytes 8 maxBytes 4294967296 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+rccl-tests: Version develop:5b27b96
+# Using devices
+#  Rank  0 Group  0 Pid   7573 on auh7-3b-gpu-006 device  0 [0000:47:00] AMD Instinct MI210
+#  Rank  1 Group  0 Pid   7574 on auh7-3b-gpu-006 device  1 [0000:4a:00] AMD Instinct MI210
+#  Rank  2 Group  0 Pid   7575 on auh7-3b-gpu-006 device  2 [0000:05:00] AMD Instinct MI210
+#  Rank  3 Group  0 Pid   7576 on auh7-3b-gpu-006 device  3 [0000:08:00] AMD Instinct MI210
+#  Rank  4 Group  0 Pid   7577 on auh7-3b-gpu-006 device  4 [0000:c5:00] AMD Instinct MI210
+#  Rank  5 Group  0 Pid   7578 on auh7-3b-gpu-006 device  5 [0000:c8:00] AMD Instinct MI210
+#  Rank  6 Group  0 Pid   7579 on auh7-3b-gpu-006 device  6 [0000:85:00] AMD Instinct MI210
+#  Rank  7 Group  0 Pid   7580 on auh7-3b-gpu-006 device  7 [0000:88:00] AMD Instinct MI210
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO ROCr version 1.14
+auh7-3b-gpu-006:7573:7573 [0] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+RCCL version : 2.21.5-HEAD:9a0e6a1
+HIP version  : 6.3.42134-a9a80e791
+ROCm version : 6.3.3.0-74-cbc70b5
+Hostname     : auh7-3b-gpu-006
+Librccl path : /opt/rocm/lib/librccl.so.1
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7574:7574 [1] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO Bootstrap : Using enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7576:7576 [3] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7578:7578 [5] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7579:7579 [6] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7580:7580 [7] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7575:7575 [2] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO NET/Plugin: No plugin found (librccl-net.so)
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO NET/Plugin: Plugin load returned 2 : librccl-net.so: cannot open shared object file: No such file or directory : when loading librccl-net.so
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO NET/Plugin: Using internal network plugin.
+auh7-3b-gpu-006:7577:7577 [4] NCCL INFO Kernel version: 5.15.0-140-generic
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Using network IB
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Using network IB
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Using network IB
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Using network IB
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO NCCL_SOCKET_IFNAME set by environment to enp69s0f0np0
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Using network IB
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Using network IB
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO NCCL_IB_HCA set to rocep9s0f0:1,rocep67s0f0:1,rocep137s0f0:1,rocep201s0f0:1
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Using network IB
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO NET/IB : Using [0]rocep67s0f0:1/RoCE [1]rocep9s0f0:1/RoCE [2]rocep201s0f0:1/RoCE [3]rocep137s0f0:1/RoCE [RO]; OOB enp69s0f0np0:172.27.193.21<0>
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO /long_pathname_so_that_rpms_can_package_the_debug_info/src/rccl/build/hipify/src/transport/net_ib.cc:652 -> 2
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Using non-device net plugin version 0
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Using network IB
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 4; gpu_id = 36198; unique_id = 281549693166752573; location_id = 1280; bdf = 1280; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 6; gpu_id = 56630; unique_id = 4276513495634371873; location_id = 50432; bdf = 50432; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 7; gpu_id = 18674; unique_id = 5512314948627147995; location_id = 51200; bdf = 51200; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 5; gpu_id = 6306; unique_id = 5785242538176102752; location_id = 2048; bdf = 2048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 3; gpu_id = 35090; unique_id = 8975139200683938819; location_id = 18944; bdf = 18944; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 8; gpu_id = 11527; unique_id = 12078199991517129215; location_id = 34048; bdf = 34048; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 2; gpu_id = 7382; unique_id = 17961682319313626616; location_id = 18176; bdf = 18176; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO [node_id = 9; gpu_id = 47299; unique_id = 18440113994353925817; location_id = 34816; bdf = 34816; domain = 0; partition = 0], 
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO ncclCommInitRank comm 0x9fafe10 rank 5 nranks 8 cudaDev 5 nvmlDev 7 busId c8000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO ncclCommInitRank comm 0x6c6f920 rank 6 nranks 8 cudaDev 6 nvmlDev 4 busId 85000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO ncclCommInitRank comm 0x346def30 rank 7 nranks 8 cudaDev 7 nvmlDev 5 busId 88000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO ncclCommInitRank comm 0x32082110 rank 3 nranks 8 cudaDev 3 nvmlDev 1 busId 8000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO ncclCommInitRank comm 0x187cd780 rank 0 nranks 8 cudaDev 0 nvmlDev 2 busId 47000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO ncclCommInitRank comm 0x3f0a6530 rank 2 nranks 8 cudaDev 2 nvmlDev 0 busId 5000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO ncclCommInitRank comm 0x2f4c9260 rank 4 nranks 8 cudaDev 4 nvmlDev 6 busId c5000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO ncclCommInitRank comm 0x168162c0 rank 1 nranks 8 cudaDev 1 nvmlDev 3 busId 4a000 commId 0x819e3ce6489a6921 - Init START
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO initialized internal alternative rsmi functionality
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Setting affinity for GPU 3 to 02,00000000,00000002
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Setting affinity for GPU 1 to 08,00000000,00000008
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Setting affinity for GPU 2 to 01,00000000,00000001
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Setting affinity for GPU 0 to 04,00000000,00000004
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO RCCL enabled same node P2P over network
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO comm 0x6c6f920 rank 6 nRanks 8 nNodes 1 localRanks 8 localRank 6 MNNVL 0
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO comm 0x9fafe10 rank 5 nRanks 8 nNodes 1 localRanks 8 localRank 5 MNNVL 0
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Trees [0] -1/-1/-1->5->4 [1] 4/-1/-1->5->0 [2] 6/-1/-1->5->7 [3] 6/-1/-1->5->7 [4] 4/-1/-1->5->-1 [5] 0/-1/-1->5->4 [6] 7/-1/-1->5->6 [7] 7/-1/-1->5->6 [8] -1/-1/-1->5->4 [9] 4/-1/-1->5->0 [10] 6/-1/-1->5->7 [11] 6/-1/-1->5->7 [12] 4/-1/-1->5->-1 [13] 0/-1/-1->5->4 [14] 7/-1/-1->5->6 [15] 7/-1/-1->5->6 [16] -1/-1/-1->5->4 [17] 4/-1/-1->5->0 [18] 6/-1/-1->5->7 [19] 6/-1/-1->5->7 [20] 4/-1/-1->5->-1 [21] 0/-1/-1->5->4 [22] 7/-1/-1->5->6 [23] 7/-1/-1->5->6 [24] -1/-1/-1->5->4 [25] 4/-1/-1->5->0 [26] 6/-1/-1->5->7 [27] 6/-1/-1->5->7 [28] 4/-1/-1->5->-1 [29] 0/-1/-1->5->4 [30] 7/-1/-1->5->6 [31] 7/-1/-1->5->6 comm 0x9fafe10 nRanks 08 busId c8000
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO comm 0x2f4c9260 rank 4 nRanks 8 nNodes 1 localRanks 8 localRank 4 MNNVL 0
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Trees [0] 5/-1/-1->4->7 [1] 6/-1/-1->4->5 [2] 7/-1/-1->4->1 [3] -1/-1/-1->4->6 [4] 7/-1/-1->4->5 [5] 5/-1/-1->4->6 [6] 1/-1/-1->4->7 [7] 6/-1/-1->4->-1 [8] 5/-1/-1->4->7 [9] 6/-1/-1->4->5 [10] 7/-1/-1->4->1 [11] -1/-1/-1->4->6 [12] 7/-1/-1->4->5 [13] 5/-1/-1->4->6 [14] 1/-1/-1->4->7 [15] 6/-1/-1->4->-1 [16] 5/-1/-1->4->7 [17] 6/-1/-1->4->5 [18] 7/-1/-1->4->1 [19] -1/-1/-1->4->6 [20] 7/-1/-1->4->5 [21] 5/-1/-1->4->6 [22] 1/-1/-1->4->7 [23] 6/-1/-1->4->-1 [24] 5/-1/-1->4->7 [25] 6/-1/-1->4->5 [26] 7/-1/-1->4->1 [27] -1/-1/-1->4->6 [28] 7/-1/-1->4->5 [29] 5/-1/-1->4->6 [30] 1/-1/-1->4->7 [31] 6/-1/-1->4->-1 comm 0x2f4c9260 nRanks 08 busId c5000
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO comm 0x346def30 rank 7 nRanks 8 nNodes 1 localRanks 8 localRank 7 MNNVL 0
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Trees [0] 4/-1/-1->7->6 [1] -1/-1/-1->7->6 [2] 5/-1/-1->7->4 [3] 5/-1/-1->7->2 [4] 6/-1/-1->7->4 [5] 6/-1/-1->7->-1 [6] 4/-1/-1->7->5 [7] 2/-1/-1->7->5 [8] 4/-1/-1->7->6 [9] -1/-1/-1->7->6 [10] 5/-1/-1->7->4 [11] 5/-1/-1->7->2 [12] 6/-1/-1->7->4 [13] 6/-1/-1->7->-1 [14] 4/-1/-1->7->5 [15] 2/-1/-1->7->5 [16] 4/-1/-1->7->6 [17] -1/-1/-1->7->6 [18] 5/-1/-1->7->4 [19] 5/-1/-1->7->2 [20] 6/-1/-1->7->4 [21] 6/-1/-1->7->-1 [22] 4/-1/-1->7->5 [23] 2/-1/-1->7->5 [24] 4/-1/-1->7->6 [25] -1/-1/-1->7->6 [26] 5/-1/-1->7->4 [27] 5/-1/-1->7->2 [28] 6/-1/-1->7->4 [29] 6/-1/-1->7->-1 [30] 4/-1/-1->7->5 [31] 2/-1/-1->7->5 comm 0x346def30 nRanks 08 busId 88000
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO comm 0x32082110 rank 3 nRanks 8 nNodes 1 localRanks 8 localRank 3 MNNVL 0
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Trees [0] 6/-1/-1->3->2 [1] 2/-1/-1->3->-1 [2] 0/-1/-1->3->2 [3] 2/-1/-1->3->0 [4] 2/-1/-1->3->6 [5] -1/-1/-1->3->2 [6] 2/-1/-1->3->0 [7] 0/-1/-1->3->2 [8] 6/-1/-1->3->2 [9] 2/-1/-1->3->-1 [10] 0/-1/-1->3->2 [11] 2/-1/-1->3->0 [12] 2/-1/-1->3->6 [13] -1/-1/-1->3->2 [14] 2/-1/-1->3->0 [15] 0/-1/-1->3->2 [16] 6/-1/-1->3->2 [17] 2/-1/-1->3->-1 [18] 0/-1/-1->3->2 [19] 2/-1/-1->3->0 [20] 2/-1/-1->3->6 [21] -1/-1/-1->3->2 [22] 2/-1/-1->3->0 [23] 0/-1/-1->3->2 [24] 6/-1/-1->3->2 [25] 2/-1/-1->3->-1 [26] 0/-1/-1->3->2 [27] 2/-1/-1->3->0 [28] 2/-1/-1->3->6 [29] -1/-1/-1->3->2 [30] 2/-1/-1->3->0 [31] 0/-1/-1->3->2 comm 0x32082110 nRanks 08 busId 8000
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO comm 0x168162c0 rank 1 nRanks 8 nNodes 1 localRanks 8 localRank 1 MNNVL 0
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 0/-1/-1->1->2 [2] 4/-1/-1->1->0 [3] 0/-1/-1->1->-1 [4] 0/-1/-1->1->2 [5] 2/-1/-1->1->0 [6] 0/-1/-1->1->4 [7] -1/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 0/-1/-1->1->2 [10] 4/-1/-1->1->0 [11] 0/-1/-1->1->-1 [12] 0/-1/-1->1->2 [13] 2/-1/-1->1->0 [14] 0/-1/-1->1->4 [15] -1/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 0/-1/-1->1->2 [18] 4/-1/-1->1->0 [19] 0/-1/-1->1->-1 [20] 0/-1/-1->1->2 [21] 2/-1/-1->1->0 [22] 0/-1/-1->1->4 [23] -1/-1/-1->1->0 [24] 2/-1/-1->1->0 [25] 0/-1/-1->1->2 [26] 4/-1/-1->1->0 [27] 0/-1/-1->1->-1 [28] 0/-1/-1->1->2 [29] 2/-1/-1->1->0 [30] 0/-1/-1->1->4 [31] -1/-1/-1->1->0 comm 0x168162c0 nRanks 08 busId 4a000
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO comm 0x3f0a6530 rank 2 nRanks 8 nNodes 1 localRanks 8 localRank 2 MNNVL 0
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 1/-1/-1->2->3 [2] 3/-1/-1->2->-1 [3] 7/-1/-1->2->3 [4] 1/-1/-1->2->3 [5] 3/-1/-1->2->1 [6] -1/-1/-1->2->3 [7] 3/-1/-1->2->7 [8] 3/-1/-1->2->1 [9] 1/-1/-1->2->3 [10] 3/-1/-1->2->-1 [11] 7/-1/-1->2->3 [12] 1/-1/-1->2->3 [13] 3/-1/-1->2->1 [14] -1/-1/-1->2->3 [15] 3/-1/-1->2->7 [16] 3/-1/-1->2->1 [17] 1/-1/-1->2->3 [18] 3/-1/-1->2->-1 [19] 7/-1/-1->2->3 [20] 1/-1/-1->2->3 [21] 3/-1/-1->2->1 [22] -1/-1/-1->2->3 [23] 3/-1/-1->2->7 [24] 3/-1/-1->2->1 [25] 1/-1/-1->2->3 [26] 3/-1/-1->2->-1 [27] 7/-1/-1->2->3 [28] 1/-1/-1->2->3 [29] 3/-1/-1->2->1 [30] -1/-1/-1->2->3 [31] 3/-1/-1->2->7 comm 0x3f0a6530 nRanks 08 busId 5000
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO comm 0x187cd780 rank 0 nRanks 8 nNodes 1 localRanks 8 localRank 0 MNNVL 0
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO NCCL_MIN_NCHANNELS set by environment to 16.
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 00/32 :    0   1   2   3   6   7   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 01/32 :    0   5   4   6   7   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 02/32 :    0   1   4   7   5   6   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 03/32 :    0   3   2   7   5   6   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 04/32 :    0   5   4   7   6   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 05/32 :    0   1   2   3   7   6   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 06/32 :    0   3   2   6   5   7   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 07/32 :    0   1   4   6   5   7   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 08/32 :    0   1   2   3   6   7   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 09/32 :    0   5   4   6   7   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 10/32 :    0   1   4   7   5   6   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 11/32 :    0   3   2   7   5   6   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 12/32 :    0   5   4   7   6   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 13/32 :    0   1   2   3   7   6   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 14/32 :    0   3   2   6   5   7   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 15/32 :    0   1   4   6   5   7   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 16/32 :    0   1   2   3   6   7   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 17/32 :    0   5   4   6   7   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 18/32 :    0   1   4   7   5   6   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 19/32 :    0   3   2   7   5   6   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 20/32 :    0   5   4   7   6   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 21/32 :    0   1   2   3   7   6   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 22/32 :    0   3   2   6   5   7   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 23/32 :    0   1   4   6   5   7   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 24/32 :    0   1   2   3   6   7   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 25/32 :    0   5   4   6   7   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 26/32 :    0   1   4   7   5   6   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 27/32 :    0   3   2   7   5   6   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 28/32 :    0   5   4   7   6   3   2   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 29/32 :    0   1   2   3   7   6   4   5
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 30/32 :    0   3   2   6   5   7   4   1
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 31/32 :    0   1   4   6   5   7   2   3
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 5/-1/-1->0->1 [2] 1/-1/-1->0->3 [3] 3/-1/-1->0->1 [4] -1/-1/-1->0->1 [5] 1/-1/-1->0->5 [6] 3/-1/-1->0->1 [7] 1/-1/-1->0->3 [8] 1/-1/-1->0->-1 [9] 5/-1/-1->0->1 [10] 1/-1/-1->0->3 [11] 3/-1/-1->0->1 [12] -1/-1/-1->0->1 [13] 1/-1/-1->0->5 [14] 3/-1/-1->0->1 [15] 1/-1/-1->0->3 [16] 1/-1/-1->0->-1 [17] 5/-1/-1->0->1 [18] 1/-1/-1->0->3 [19] 3/-1/-1->0->1 [20] -1/-1/-1->0->1 [21] 1/-1/-1->0->5 [22] 3/-1/-1->0->1 [23] 1/-1/-1->0->3 [24] 1/-1/-1->0->-1 [25] 5/-1/-1->0->1 [26] 1/-1/-1->0->3 [27] 3/-1/-1->0->1 [28] -1/-1/-1->0->1 [29] 1/-1/-1->0->5 [30] 3/-1/-1->0->1 [31] 1/-1/-1->0->3 comm 0x187cd780 nRanks 08 busId 47000
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Trees [0] 7/-1/-1->6->3 [1] 7/-1/-1->6->4 [2] -1/-1/-1->6->5 [3] 4/-1/-1->6->5 [4] 3/-1/-1->6->7 [5] 4/-1/-1->6->7 [6] 5/-1/-1->6->-1 [7] 5/-1/-1->6->4 [8] 7/-1/-1->6->3 [9] 7/-1/-1->6->4 [10] -1/-1/-1->6->5 [11] 4/-1/-1->6->5 [12] 3/-1/-1->6->7 [13] 4/-1/-1->6->7 [14] 5/-1/-1->6->-1 [15] 5/-1/-1->6->4 [16] 7/-1/-1->6->3 [17] 7/-1/-1->6->4 [18] -1/-1/-1->6->5 [19] 4/-1/-1->6->5 [20] 3/-1/-1->6->7 [21] 4/-1/-1->6->7 [22] 5/-1/-1->6->-1 [23] 5/-1/-1->6->4 [24] 7/-1/-1->6->3 [25] 7/-1/-1->6->4 [26] -1/-1/-1->6->5 [27] 4/-1/-1->6->5 [28] 3/-1/-1->6->7 [29] 4/-1/-1->6->7 [30] 5/-1/-1->6->-1 [31] 5/-1/-1->6->4 comm 0x6c6f920 nRanks 08 busId 85000
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO P2P Chunksize set to 524288
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 00/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 02/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 00/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 05/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 00/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 01/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 00/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 05/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 08/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 13/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 16/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 21/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 08/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 08/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 13/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 09/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 16/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 16/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 21/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 05/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 24/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 17/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 24/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 29/0 : 4[c5000] -> 5[c8000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 24/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 25/0 : 6[85000] -> 7[88000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 29/0 : 1[4a000] -> 2[5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 07/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 08/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 00/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 02/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 02/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 03/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 10/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 11/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 10/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 13/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 18/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 05/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 07/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 19/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 15/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 16/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 18/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 08/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 21/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 10/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 23/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 26/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 27/0 : 5[c8000] -> 6[85000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 01/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 06/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 24/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 26/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 07/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 14/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 07/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 09/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 13/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 15/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 29/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 31/0 : 0[47000] -> 1[4a000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 03/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 15/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 15/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 17/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 06/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 11/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 16/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 18/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 14/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 22/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 23/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 30/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 31/0 : 5[c8000] -> 7[88000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 23/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 25/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 21/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 23/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 24/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 00/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 05/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 08/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 13/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 16/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 07/0 : 7[88000] -> 2[5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 15/0 : 7[88000] -> 2[5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 21/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 23/0 : 7[88000] -> 2[5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 19/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 31/0 : 7[88000] -> 2[5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 22/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 26/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 31/0 : 4[c5000] -> 6[85000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 24/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7578:7692 [5] NCCL INFO Channel 29/0 : 5[c8000] -> 0[47000] via P2P/IPC comm 0x9fafe10 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 02/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 29/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 27/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 04/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 30/0 : 0[47000] -> 3[8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 10/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 12/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 18/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 20/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 26/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 28/0 : 4[c5000] -> 7[88000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 31/0 : 2[5000] -> 3[8000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 02/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 07/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 10/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 15/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 18/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 23/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 00/0 : 3[8000] -> 6[85000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 08/0 : 3[8000] -> 6[85000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 16/0 : 3[8000] -> 6[85000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 24/0 : 3[8000] -> 6[85000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 26/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7574:7690 [1] NCCL INFO Channel 31/0 : 1[4a000] -> 4[c5000] via P2P/IPC comm 0x168162c0 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 05/0 : 3[8000] -> 7[88000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 13/0 : 3[8000] -> 7[88000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 21/0 : 3[8000] -> 7[88000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 29/0 : 3[8000] -> 7[88000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 01/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 04/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 02/0 : 6[85000] -> 2[5000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 10/0 : 6[85000] -> 2[5000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 18/0 : 6[85000] -> 2[5000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 26/0 : 6[85000] -> 2[5000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 09/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 12/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 17/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 20/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 25/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7573:7686 [0] NCCL INFO Channel 28/0 : 0[47000] -> 5[c8000] via P2P/IPC comm 0x187cd780 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 06/0 : 2[5000] -> 6[85000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 01/0 : 7[88000] -> 3[8000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 14/0 : 2[5000] -> 6[85000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 22/0 : 2[5000] -> 6[85000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 30/0 : 2[5000] -> 6[85000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 09/0 : 7[88000] -> 3[8000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 03/0 : 2[5000] -> 7[88000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 04/0 : 6[85000] -> 3[8000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 11/0 : 2[5000] -> 7[88000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 12/0 : 6[85000] -> 3[8000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 19/0 : 2[5000] -> 7[88000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 20/0 : 6[85000] -> 3[8000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 28/0 : 6[85000] -> 3[8000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 17/0 : 7[88000] -> 3[8000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 25/0 : 7[88000] -> 3[8000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 27/0 : 2[5000] -> 7[88000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 02/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 07/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 10/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 03/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 15/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 00/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 18/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 06/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 08/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 06/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 14/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 11/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 14/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 19/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 22/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 23/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 16/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 22/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 24/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7580:7689 [7] NCCL INFO Channel 30/0 : 7[88000] -> 4[c5000] via P2P/IPC comm 0x346def30 nRanks 08
+auh7-3b-gpu-006:7577:7687 [4] NCCL INFO Channel 27/0 : 4[c5000] -> 1[4a000] via P2P/IPC comm 0x2f4c9260 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 01/0 : 2[5000] -> 1[4a000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7575:7693 [2] NCCL INFO Channel 04/0 : 2[5000] -> 1[4a000] via P2P/IPC comm 0x3f0a6530 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 26/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 31/0 : 3[8000] -> 0[47000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7579:7691 [6] NCCL INFO Channel 03/0 : 6[85000] -> 4[c5000] via P2P/IPC comm 0x6c6f920 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 01/0 : 3[8000] -> 2[5000] via P2P/IPC comm 0x32082110 nRanks 08
+auh7-3b-gpu-006:7576:7688 [3] NCCL INFO Channel 03/0 : 3[8000] -> 2[5000] via P2P/IPC comm 0x32082110 nRanks 08

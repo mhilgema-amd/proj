@@ -1,0 +1,347 @@
+#!/bin/bash
+#SBATCH -J rochpl.g42.hermes-2.480n.8ppn.8gpu
+#SBATCH -o %x.%N.o%j
+#SBATCH -N 480
+#SBATCH -n 3840
+#SBATCH -c 16
+#SBATCH --gres=gpu:8
+#SBATCH -p hermes-2
+#SBATCH -t 2:00:00
+#SBATCH --mail-user=martin.hilgeman@amd.com
+#SBATCH --mail-type=begin  # email me when the job starts
+#SBATCH --mail-type=end    # email me when the job finishes
+#SBATCH --exclusive
+#SBATCH --exclude=auh7-3b-gpu-019,auh7-3b-gpu-028,auh7-3b-gpu-124,auh7-3b-gpu-126,auh7-3b-gpu-157,auh7-3b-gpu-164,auh7-3b-gpu-173,auh7-3b-gpu-237,auh7-3b-gpu-242,auh7-3b-gpu-286,auh7-4b-gpu-046,auh7-4b-gpu-064,auh7-4b-gpu-098,auh7-4b-gpu-099,auh7-4b-gpu-101,auh7-4b-gpu-103,auh7-4b-gpu-113,auh7-4b-gpu-116,auh7-4b-gpu-119,auh7-4b-gpu-121,auh7-4b-gpu-125,auh7-4b-gpu-198,auh7-4b-gpu-203,auh7-4b-gpu-221,auh7-4b-gpu-293,auh7-3b-gpu-205,auh7-3b-gpu-107,auh7-4b-gpu-085,auh7-3b-gpu-268,auh7-3b-gpu-169,auh7-4b-gpu-179,auh7-3b-gpu-152,auh7-3b-gpu-175,auh7-3b-gpu-033,auh7-3b-gpu-150,auh7-4b-gpu-001,auh7-3b-gpu-293,auh7-3b-gpu-320
+#
+#
+# Excluded nodes: auh7-3b-gpu-019 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-028 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-124 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-126 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-157 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-164 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-173 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-237 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-242 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-286 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-046 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-064 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-098 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-099 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-101 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-103 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-113 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-116 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-119 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-121 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-125 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-198 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-203 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-221 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-4b-gpu-293 - srun: error: Task launch for StepId=7768.0 failed on node auh7-4b-gpu-293: Can't find an address, check slurm.conf
+#                 auh7-3b-gpu-205 - Caught signal 7 (Bus error: kill(2) or raise(3))
+#                                   Memory access fault by GPU node-3 (Agent handle: 0x55d294c3a4e0) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#
+#                 auh7-3b-gpu-107 - Caught signal 7 (Bus error: kill(2) or raise(3))
+#                                   Memory access fault by GPU node-7 (Agent handle: 0x564a31d98ff0) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#                 auh7-4b-gpu-085 - Caught signal 7 (Bus error: kill(2) or raise(3))
+#                                   Memory access fault by GPU node-7 (Agent handle: 0x563ff76c5000) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#                 auh7-3b-gpu-268 - No HIP capabale device found. Disabling component.
+#                 auh7-3b-gpu-169 - Caught signal 7 (Bus error: kill(2) or raise(3))
+#                                   Memory access fault by GPU node-5 (Agent handle: 0x560a6b0ceb60) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#                 auh7-4b-gpu-179 - amdgpu 0000:47:00.0: {1}uncorrectable hardware error(ERREVENT_ATHUB_INTERRUPT) detected!
+#                                   amdgpu 0000:05:00.0: amdgpu: XGMI3X16 PCS DataLossErr detected
+#                                   amdgpu 0000:05:00.0: {1}socket: 1, die: 0 1 uncorrectable hardware errors detected in xgmi_wafl block
+#                 auh7-3b-gpu-152 - HW Exception by GPU node-3 (Agent handle: 0x564cf7fcb500) reason :GPU Hang
+#                 auh7-3b-gpu-175 - GPU reset failed
+#                 auh7-3b-gpu-033 - Memory access fault by GPU node-2 (Agent handle: 0x5601ef151d30) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#                 auh7-3b-gpu-150 - Memory access fault by GPU node-9 (Agent handle: 0x55a13cbe6490) on address (nil)(may not be exact address). Reason: DRAM ECC failure.
+#                 auh7-4b-gpu-001 - ud_ep.c:278  Fatal: UD endpoint 0x7f34ec03d200 to <no debug data>: unhandled timeout error
+#                 auh7-3b-gpu-293 - ud_ep.c:278  Fatal: UD endpoint 0x564475f850a0 to <no debug data>: unhandled timeout error
+#                 auh7-3b-gpu-320 - ib_iface.c:1230 UCX  ERROR rocep9s0f0: ibv_create_cq(cqe=256) failed: Connection timed out
+#                                   ucp_worker.c:1413 UCX  ERROR uct_iface_open(ud_verbs/rocep9s0f0:1) failed: Input/output error
+#                                   ../../../../../ompi/mca/pml/ucx/pml_ucx.c:313  Error: Failed to create UCP worker
+
+
+alias mytime='/usr/bin/time -f "Elapsed: %e  User: %U  System: %S  PageF: %F"'
+shopt -s expand_aliases
+set -o pipefail
+
+#
+# Definition of the environment
+#
+function init_env()
+{
+    #
+    #
+    # Edit PREFIX to the directory where you unpacked the archive
+    #
+    APP=rochpl
+    COMPILER=gcc114
+    MPI=openmpi
+    FRAMEWORK=rocm633
+    VERSION=default
+
+    #
+    # Directory with custom Slurm prologue/epilogue/profiling scripts
+    #
+    # SCRIPT_DIR is used by other scripts, needs to be exported
+    #
+    export SCRIPT_DIR="${HOME}/martinh/app/slurm/bin"
+
+    #
+    # Number of MPI ranks
+    # set it to 1 per CCX for a single node run
+    #
+    NPES=${SLURM_NTASKS}
+    NNODES=${SLURM_NNODES}
+    PPN=$((NPES / NNODES))
+    NGPUS=${SLURM_GPUS_ON_NODE:-${PPN}}
+    OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
+
+    #
+    # Standard paths
+    #
+    # PREFIX and SCR are used by other scripts, need to be exported
+    #
+    export PREFIX=${HOME}/martinh/app/${APP}
+    INPD=${PREFIX}/inp
+    INP="${INPD}/HPL.dat"
+    export SCR="${HOME}/martinh/scratch/${APP}/${SLURM_JOB_ID}"
+}
+
+#
+# Load modules
+#
+function load_modules ()
+{
+    if which module; then
+        if [ -d ${HOME}/opt/modulefiles ]; then
+            module use ${HOME}/opt/modulefiles
+        fi
+        MOD=${APP}/${COMPILER}/${MPI}/${FRAMEWORK}/${VERSION}
+        if module is-avail ${MOD}; then
+            module load ${MOD}
+        else
+            echo "Unable to find module ${MOD}. Exiting"
+            exit 1
+        fi
+        module list
+    else
+        . ${HOME}/martinh/env.sh || exit 1
+    fi
+
+    echo "#### LD_LIBRARY_PATH ####"
+    echo ${LD_LIBRARY_PATH}
+    echo
+}
+
+#
+# Initialize the job environment and setup the nodes
+#
+function init_job ()
+{
+    #
+    #
+    # List of nodes
+    echo "#### Node list ####"
+    scontrol show hostnames
+    echo
+}
+
+#
+# Set scratch directory
+#
+function setup_scratch ()
+{
+    if [ ! -d "${SCR}" ]; then
+        mkdir -p "${SCR}" || exit 1
+    fi
+    cd "${SCR}" || exit 1
+
+    #
+    # Copy input files
+    #
+    #cp ${INP} HPL.dat || exit 1 # Using command line arguments
+}
+
+#
+# Setup the environment (Application/MPI/UCX/...)
+#
+function setup_env ()
+{
+    #
+    # MPI
+    #
+    MPIRUN=mpirun
+    MPI_ARGS="${MPI_ARGS} -np ${NPES}"
+    MPI_ARGS="${MPI_ARGS} --bind-to none"
+    MPI_ARGS="${MPI_ARGS} --mca coll_hcoll_enable 0"
+    MPI_ARGS="${MPI_ARGS} --mca psec ^munge"
+    MPI_ARGS="${MPI_ARGS} --mca pml ucx"
+
+    #
+    # UCX stuff
+    #
+    MPI_ARGS="${MPI_ARGS} -x UCX_TLS=self,sm,rocm_copy,rocm_ipc,ud_verbs"
+    MPI_ARGS="${MPI_ARGS} -x UCX_RNDV_THRESH=32768"
+    MPI_ARGS="${MPI_ARGS} -x UCX_IB_GID_INDEX=3"
+    MPI_ARGS="${MPI_ARGS} -x UCX_PROTO_INFO=n"
+    MPI_ARGS="${MPI_ARGS} -x UCX_PROTO_ENABLE=y"
+    MPI_ARGS="${MPI_ARGS} -x UCX_UNIFIED_MODE=y"
+    MPI_ARGS="${MPI_ARGS} -x UCX_ROCM_COPY_LAT=2e-6"
+    MPI_ARGS="${MPI_ARGS} -x UCX_ROCM_IPC_MIN_ZCOPY=4096"
+    MPI_ARGS="${MPI_ARGS} -x UCX_RNDV_SCHEME=get_zcopy"
+
+    #
+    # AMD GPU setttings
+    #
+    #export ROCR_VISIBLE_DEVICES=0,1
+
+    #
+    # Affinity
+    #
+    AFFINITY=${HOME}/martinh/bin/affinity.sh
+    unset SLURM_CPU_BIND
+
+    #
+    # Application specific stuff
+    #
+    NB=512
+    P=48
+    Q=80
+    N=5295104 # 85% of memory
+    EXE=rochpl
+    EXE_ARGS="-P ${P} -Q ${Q} -N ${N} --NB ${NB} -p 2 -q 4"
+
+    #
+    # NCCL/RCCL
+    #
+    export NCCL_DEBUG=INFO
+    #export NCCL_DEBUG_SUBSYS="INIT,ENV,GRAPH,NET,TUNING"
+    #export NCCL_TOPO_DUMP_FILE="${SCR}/rccl-${SLURM_JOBID}.xml"
+    export NCCL_NET_GDR_LEVEL=3
+    export RCCL_MSCCL_FORCE_ENABLE=0
+    export RCCL_MSCCLPP_ENABLE=0
+    export NCCL_CROSS_NIC=1
+}
+
+#
+# Write node configuration to disk
+#
+function dump_system_info ()
+{
+    SYSINFO="${SCRIPT_DIR}/my_sysinfo.sh"
+    if [ ! -f "${SYSINFO}" ]; then
+        echo "SYSINFO script ${SYSINFO} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "RUNNING SYSINFO script ${SYSINFO} in the background ..."
+    srun -N ${NNODES} -n ${NNODES} ${SYSINFO}
+}
+
+#
+# Job prologue to setup nodes properly
+#
+function run_prologue ()
+{
+    PROLOGUE="${SCRIPT_DIR}/prologue.sh"
+    if [ ! -f "${PROLOGUE}" ]; then
+        echo "Prologue script ${PROLOGUE} does not exist. Exiting."
+        exit 1
+    fi
+
+    #
+    # Settings for prologue script
+    #
+    export BOOST_EN=1
+    export CPU_CLK_MAX=3700MHz
+    export SCLK_MAX=2100
+    export SCLK_MIN=2000
+
+    echo "RUNNING PROLOGUE script ${PROLOGUE}"
+    srun -N ${NNODES} -n ${NNODES} ${PROLOGUE} || exit 1
+} 
+
+#
+# Run the application
+#
+function run_app ()
+{
+    #
+    # Store environment
+    #
+    env > ${SCR}/env.txt 2>&1
+
+    #
+    # ldd of the executable
+    #
+    echo
+    echo "ldd $( which ${EXE} )"
+    ldd $( which ${EXE} )
+
+    RUNCMD="${MPIRUN} ${MPI_ARGS} ${AFFINITY} ${EXE} ${EXE_ARGS}"
+    echo
+    echo "${RUNCMD}"
+    mytime ${RUNCMD} 2>&1 | tee stdout.${APP}.${SLURM_JOB_ID}
+}
+
+#
+# Start the PM log
+#
+function start_agt ()
+{
+    AGT="${SCRIPT_DIR}/my_agt.sh"
+    export AGT_JOBNAME="my_agt_job.${SLURM_JOB_ID}"
+    touch ${SCR}/${AGT_JOBNAME}
+
+    if [ ! -f "${AGT}" ]; then
+        echo "AGT script ${AGT} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo -ne "RUNNING AGT script ${AGT} with job name ${AGT_JOBNAME} in the background ...\n"
+    srun --job-name=${AGT_JOBNAME} -N ${NNODES} -n ${NNODES} ${AGT} &
+}
+
+#
+# Stop the PM log
+#
+function stop_agt ()
+{
+    if [ ! -f "${AGT}" ]; then
+        echo "AGT script ${AGT} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "STOPPING AGT script ${AGT} ..."
+    rm ${SCR}/${AGT_JOBNAME}
+}
+
+#
+# Job epilogue to setup nodes properly
+#
+function run_epilogue ()
+{
+    EPILOGUE="${SCRIPT_DIR}/epilogue.sh"
+    if [ ! -f "${EPILOGUE}" ]; then
+        echo "Epilogue script ${EPILOGUE} does not exist. Exiting."
+        exit 1
+    fi
+
+    echo "RUNNING EPILOGUE script ${EPILOGUE}"
+    srun -N ${NNODES} -n ${NNODES} ${EPILOGUE} || exit 1
+} 
+
+init_env
+load_modules
+init_job
+setup_scratch
+setup_env
+dump_system_info
+#run_prologue
+#start_agt
+run_app
+#stop_agt
+#run_epilogue

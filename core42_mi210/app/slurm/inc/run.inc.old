@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+
+function run_app ()
+{
+	cat >> .slurmjobscript.$$ <<- EOF
+	# 
+	# Run the benchmark
+	#
+	#
+	if [ ! -f \${SCR}/${EXE} ]; then
+	    FOUND=0
+	    for DIR in \$( echo \${PATH} | sed 's/:/ /g' ); do
+	        if [ -f \${DIR}/${EXE} ]; then
+	            EXE=\${DIR}/${EXE}
+	            FOUND=1
+	        fi
+	    done
+	    if [ \${FOUND} -eq 0 ]; then
+	        echo "Executable ${EXE} not found."
+	        exit 1
+	    fi
+	else
+	    EXE=\${SCR}/${EXE}
+	fi
+
+	echo "Scratch directory is: \${SCR}"
+	echo
+	RUNCMD="${F1COUNT} ${MPIRUN} ${MPI_ARGS} ${APS} ${VTUNE2} ${AFFINITY} ${PERF} ${OPROFILE} ${UPROF} ${VTUNE1} \${EXE} ${EXE_ARGS}"
+	echo "\${RUNCMD}"
+	eval "mytime \${RUNCMD} | tee ${APP}.${NPES}.out 2>&1"
+
+	EOF
+}

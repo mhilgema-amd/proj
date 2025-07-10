@@ -1,0 +1,88 @@
+#!/bin/bash
+
+function setup_mpi ()
+{
+    #
+    # MPI parameters
+    #
+    if [ x${MPI} = ximpi ]; then
+        MPIRUN="mpiexec.hydra -rmk slurm"
+        MPI_ARGS="${MPI_ARGS} -perhost ${PPN} -genv I_MPI_DEBUG 3"
+
+        #
+        # MPI transport selection
+        #
+#        TRANSPORT=ofa
+#        if [ "x${TRANSPORT}" = "xdapl" ]; then
+#            MPI_ARGS="${MPI_ARGS} -DAPL -genv I_MPI_FABRICS shm:dapl -genv I_MPI_DAPL_UD off -genv I_MPI_DAPL_PROVIDER ofa-v2-mlx5_0-1u -genv DAPL_MAX_INLINE 256 -genv I_MPI_DAPL_RDMA_RNDV_WRITE on -genv DAPL_IB_MTU 4096"
+#        fi
+#       if [ "x${TRANSPORT}" = "xofa" ]; then
+#            MPI_ARGS="${MPI_ARGS} -genv MV2_USE_APM 0 -genv I_MPI_FABRICS shm:ofa -genv I_MPI_OFA_USE_XRC 1 -genv I_MPI_OFA_NUM_ADAPTERS 1 -genv I_MPI_OFA_ADAPTER_NAME mlx5_0 -genv I_MPI_OFA_NUM_PORTS 1"
+#        fi
+
+        #
+        # Set KMP_STACKSIZE for hybrid MPI/OMP runs
+        #
+        if [ ${NTHREADS} -gt 1 ]; then
+            MPI_ARGS="${MPI_ARGS} -genv KMP_STACKSIZE 512M"
+        fi
+
+        #
+        # Set MPI options specified a submit time
+        #
+        if [ "x${MPI_OPTION}" != "x" -a "x${MPI_OPTION_VAL}" != "x" ]; then
+            MPI_ARGS="${MPI_ARGS} -genv ${MPI_OPTION} ${MPI_OPTION_VAL}"
+        fi
+
+        #
+        # We run out of CQs above 1024 ranks
+        #
+        if [ ${NPES} -gt 1024 ]; then
+            MPI_ARGS="${MPI_ARGS} -genv UCX_TLS self,sm,dc_x"
+        else
+            MPI_ARGS="${MPI_ARGS} -genv UCX_TLS self,sm,rc_x"
+        fi
+
+    elif [ x${MPI} = xopenmpi ]; then
+        MPIRUN="mpirun --bind-to none"
+        MPI_ARGS="${MPI_ARGS} -x UCX_NET_DEVICES=mlx5_0:1"
+        if [ ${NPES} -gt ${PPN} ]; then
+            #
+            # We run out of CQs above 1024 ranks
+            #
+            if [ ${NPES} -gt 1024 ]; then
+                MPI_ARGS="${MPI_ARGS} -x UCX_TLS=self,sm,dc_x"
+            else
+                MPI_ARGS="${MPI_ARGS} -x UCX_TLS=self,sm,rc_x"
+            fi
+        fi
+        #
+        # Work around a bug in AOCC in combination with Open MPI
+        #
+        if [[ ${COMPILER} = *aocc* ]]; then
+            MPI_ARGS="${MPI_ARGS} -x PMIX_MCA_gds=^ds21"
+        fi
+        #
+        # Set KMP_STACKSIZE for hybrid MPI/OMP runs
+        #
+        if [ ${NTHREADS} -gt 1 ]; then
+            MPI_ARGS="${MPI_ARGS} -x KMP_STACKSIZE=512M"
+        fi
+
+        #
+        # Set MPI options specified a submit time
+        #
+        if [ "x${MPI_OPTION}" != "x" -a "x${MPI_OPTION_VAL}" != "x" ]; then
+            MPI_ARGS="${MPI_ARGS} -x ${MPI_OPTION}=${MPI_OPTION_VAL}"
+        fi
+    fi
+
+    #
+    # Special treatment for GAMESS US run script
+    #
+    #
+    if [ "x${APP}" = "xgamess" ]; then
+        MPIRUN="${PREFIX}/gamess/rungms"
+        MPI_ARGS="${INP%\.*} ${VERNO} ${NPES} ${PPN}"
+    fi
+}

@@ -1,0 +1,71 @@
+================================================================================
+HPLinpack 2.2  --  High-Performance Linpack benchmark  --   February 24, 2016
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+An explanation of the input/output parameters follows:
+T/V    : Wall time / encoded variant.
+N      : The order of the coefficient matrix A.
+NB     : The partitioning blocking factor.
+P      : The number of process rows.
+Q      : The number of process columns.
+Time   : Time in seconds to solve the linear system.
+Gflops : Rate of execution for solving the linear system.
+
+The following parameter values will be used:
+
+N      :  256000 
+NB     :     384 
+PMAP   : Column-major process mapping
+P      :       2 
+Q      :       4 
+PFACT  :   Right 
+NBMIN  :      32 
+NDIV   :       2 
+RFACT  :   Right 
+BCAST  :   1ring 
+DEPTH  :       1 
+SWAP   : Spread-roll (long)
+L1     : transposed form
+U      : transposed form
+EQUIL  : no
+ALIGN  : 8 double precision words
+
+--------------------------------------------------------------------------------
+
+- The matrix A is randomly generated for each test.
+- The following scaled residual check will be computed:
+      ||Ax-b||_oo / ( eps * ( || x ||_oo * || A ||_oo + || b ||_oo ) * N )
+- The relative machine precision (eps) is taken to be               1.110223e-16
+- Computational tests pass if scaled residuals are less than                16.0
+
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WC10R2R32      256000   384     2     4              70.22              1.593e+05
+HPL_pdgesv() start time Wed May 14 07:09:09 2025
+
+HPL_pdgesv() end time   Wed May 14 07:10:19 2025
+
+--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV--VVV-
+Max aggregated wall time bcast . . . :              24.60
++ Max aggregated wall time rfact . . :               2.77
++ + Max aggregated wall time pfact . :               2.69
++ + Max aggregated wall time mxswp . :               0.74
+Max aggregated wall time laswp . . . :               8.85
+Max aggregated wall time update  . . :              56.25
+Max aggregated wall time up tr sv  . :               0.15
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=        0.0000327 ...... PASSED
+================================================================================
+
+Finished      1 tests with the following results:
+              1 tests completed and passed residual checks,
+              0 tests completed and failed residual checks,
+              0 tests skipped because of illegal input values.
+--------------------------------------------------------------------------------
+
+End of Tests.
+================================================================================

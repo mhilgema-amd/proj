@@ -1,0 +1,64 @@
+# nThread 1 nGpus 1 minBytes 8 maxBytes 4294967296 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
+#
+rccl-tests: Version develop:5b27b96
+# Using devices
+#  Rank  0 Group  0 Pid   7316 on auh7-3b-gpu-006 device  0 [0000:47:00] AMD Instinct MI210
+#  Rank  1 Group  0 Pid   7321 on auh7-3b-gpu-006 device  1 [0000:4a:00] AMD Instinct MI210
+#  Rank  2 Group  0 Pid   7317 on auh7-3b-gpu-006 device  2 [0000:05:00] AMD Instinct MI210
+#  Rank  3 Group  0 Pid   7320 on auh7-3b-gpu-006 device  3 [0000:08:00] AMD Instinct MI210
+#  Rank  4 Group  0 Pid   7318 on auh7-3b-gpu-006 device  4 [0000:c5:00] AMD Instinct MI210
+#  Rank  5 Group  0 Pid   7322 on auh7-3b-gpu-006 device  5 [0000:c8:00] AMD Instinct MI210
+#  Rank  6 Group  0 Pid   7319 on auh7-3b-gpu-006 device  6 [0000:85:00] AMD Instinct MI210
+#  Rank  7 Group  0 Pid   7323 on auh7-3b-gpu-006 device  7 [0000:88:00] AMD Instinct MI210
+#  Rank  8 Group  0 Pid   6670 on auh7-3b-gpu-008 device  0 [0000:47:00] AMD Instinct MI210
+#  Rank  9 Group  0 Pid   6671 on auh7-3b-gpu-008 device  1 [0000:4a:00] AMD Instinct MI210
+#  Rank 10 Group  0 Pid   6672 on auh7-3b-gpu-008 device  2 [0000:05:00] AMD Instinct MI210
+#  Rank 11 Group  0 Pid   6673 on auh7-3b-gpu-008 device  3 [0000:08:00] AMD Instinct MI210
+#  Rank 12 Group  0 Pid   6674 on auh7-3b-gpu-008 device  4 [0000:c5:00] AMD Instinct MI210
+#  Rank 13 Group  0 Pid   6675 on auh7-3b-gpu-008 device  5 [0000:c8:00] AMD Instinct MI210
+#  Rank 14 Group  0 Pid   6676 on auh7-3b-gpu-008 device  6 [0000:85:00] AMD Instinct MI210
+#  Rank 15 Group  0 Pid   6677 on auh7-3b-gpu-008 device  7 [0000:88:00] AMD Instinct MI210
+RCCL version : 2.21.5-HEAD:9a0e6a1
+HIP version  : 6.3.42134-a9a80e791
+ROCm version : 6.3.3.0-74-cbc70b5
+Hostname     : auh7-3b-gpu-006
+Librccl path : /opt/rocm/lib/librccl.so.1
+#
+#                                                              out-of-place                       in-place          
+#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong
+#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)       
+           8             2     float     sum      -1    320.5    0.00    0.00      0    318.2    0.00    0.00      0
+          16             4     float     sum      -1    312.5    0.00    0.00      0    310.9    0.00    0.00      0
+          32             8     float     sum      -1    305.1    0.00    0.00      0    299.8    0.00    0.00      0
+          64            16     float     sum      -1    298.1    0.00    0.00      0    296.4    0.00    0.00      0
+         128            32     float     sum      -1    296.3    0.00    0.00      0    298.2    0.00    0.00      0
+         256            64     float     sum      -1    295.9    0.00    0.00      0    296.9    0.00    0.00      0
+         512           128     float     sum      -1    297.5    0.00    0.00      0    297.9    0.00    0.00      0
+        1024           256     float     sum      -1    298.4    0.00    0.01      0    298.0    0.00    0.01      0
+        2048           512     float     sum      -1    299.1    0.01    0.01      0    299.1    0.01    0.01      0
+        4096          1024     float     sum      -1    332.1    0.01    0.02      0    340.2    0.01    0.02      0
+        8192          2048     float     sum      -1    313.0    0.03    0.05      0    309.6    0.03    0.05      0
+       16384          4096     float     sum      -1    318.0    0.05    0.10      0    318.2    0.05    0.10      0
+       32768          8192     float     sum      -1    312.8    0.10    0.20      0    312.9    0.10    0.20      0
+       65536         16384     float     sum      -1    352.0    0.19    0.35      0    349.9    0.19    0.35      0
+      131072         32768     float     sum      -1    542.1    0.24    0.45      0    535.6    0.24    0.46      0
+      262144         65536     float     sum      -1    694.7    0.38    0.71      0    685.5    0.38    0.72      0
+      524288        131072     float     sum      -1    700.8    0.75    1.40      0    699.9    0.75    1.40      0
+     1048576        262144     float     sum      -1    776.5    1.35    2.53      0    776.7    1.35    2.53      0
+     2097152        524288     float     sum      -1    793.0    2.64    4.96      0    791.1    2.65    4.97      0
+     4194304       1048576     float     sum      -1    840.2    4.99    9.36      0    842.1    4.98    9.34      0
+     8388608       2097152     float     sum      -1   1129.5    7.43   13.93      0   1124.9    7.46   13.98      0
+    16777216       4194304     float     sum      -1   1989.1    8.43   15.81      0   1992.7    8.42   15.79      0
+    33554432       8388608     float     sum      -1   3882.3    8.64   16.21      0   3888.5    8.63   16.18      0
+    67108864      16777216     float     sum      -1   7866.2    8.53   16.00      0   7858.1    8.54   16.01      0
+   134217728      33554432     float     sum      -1    15865    8.46   15.86      0    16078    8.35   15.65      0
+   268435456      67108864     float     sum      -1    32646    8.22   15.42      0    84097    3.19    5.98      0
+   536870912     134217728     float     sum      -1    64722    8.30   15.55      0    65382    8.21   15.40      0
+  1073741824     268435456     float     sum      -1   131856    8.14   15.27      0   132048    8.13   15.25      0
+  2147483648     536870912     float     sum      -1   262934    8.17   15.31      0   262552    8.18   15.34      0
+  4294967296    1073741824     float     sum      -1   525273    8.18   15.33      0   525499    8.17   15.32      0
+# Errors with asterisks indicate errors that have exceeded the maximum threshold.
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 5.66513 
+#
+
