@@ -1,0 +1,15 @@
+#%Module -*- tcl -*-
+##
+## dot modulefile
+##
+set             module_prefix       /opt
+set             vendor              amd
+set             app                 agfhc
+set             version             1.23.2
+set             root                $module_prefix/$vendor/$app/$version
+
+prepend-path    PATH                $root
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to your environment variables,"
+}

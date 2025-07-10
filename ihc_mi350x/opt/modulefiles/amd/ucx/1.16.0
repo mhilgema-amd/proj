@@ -1,0 +1,41 @@
+#%Module1.0#####################################################################
+##
+## UCX
+##
+set             module_prefix         /opt
+set             vendor                amd
+
+set             app                   ucx
+set             framework             rocm700
+set             version               1.16.0
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to environment paths\n"
+}
+
+module-whatis   "loads $app $version module"
+
+set             root                  $module_prefix/$vendor/rochpl/tpl/$app
+
+prepend-path    PATH                  $root/bin
+prepend-path    CPATH                 $root/include
+prepend-path    C_INCLUDE_PATH        $root/include
+prepend-path    CPLUS_INCLUDE_PATH    $root/include
+prepend-path    LIBRARY_PATH          $root/lib
+prepend-path    LD_LIBRARY_PATH       $root/lib
+prepend-path    PKG_CONFIG_PATH       $root/lib/pkgconfig
+prepend-path    CMAKE_MODULE_PATH     $root/share/cmake
+
+set prereq1     rocm/7.0.0
+
+if { [module-info mode load] } {
+    if { ! [ is-loaded $prereq1 ] } {
+        module load $prereq1
+    }
+}
+
+if { [module-info mode remove ] } {
+    if { [ is-loaded $prereq1 ] } {
+        module unload $prereq1
+    }
+}

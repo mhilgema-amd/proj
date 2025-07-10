@@ -1,0 +1,47 @@
+#%Module1.0#####################################################################
+##
+## UCX
+##
+set             module_prefix         /opt
+
+set             app                   ucx
+set             framework             rocm700
+set             version               1.18.1
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to environment paths\n"
+}
+
+module-whatis   "loads $app $version module"
+
+set             root                  $module_prefix/$app/$framework/$version
+
+prepend-path    PATH                  $root/bin
+prepend-path    CPATH                 $root/include
+prepend-path    C_INCLUDE_PATH        $root/include
+prepend-path    CPLUS_INCLUDE_PATH    $root/include
+prepend-path    LIBRARY_PATH          $root/lib
+prepend-path    LD_LIBRARY_PATH       $root/lib
+prepend-path    PKG_CONFIG_PATH       $root/lib/pkgconfig
+prepend-path    CMAKE_MODULE_PATH     $root/share/cmake
+
+set prereq1     rocm/7.0.0
+set prereq2     xpmem/git_3bcab55
+
+if { [module-info mode load] } {
+    if { ! [ is-loaded $prereq1 ] } {
+        module load $prereq1
+    }
+    if { ! [ is-loaded $prereq2 ] } {
+        module load $prereq2
+    }
+}
+
+if { [module-info mode remove ] } {
+    if { [ is-loaded $prereq1 ] } {
+        module unload $prereq1
+    }
+    if { [ is-loaded $prereq2 ] } {
+        module unload $prereq2
+    }
+}

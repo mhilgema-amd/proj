@@ -1,0 +1,48 @@
+#%Module1.0#####################################################################
+##
+## rocHPL
+##
+set             module_prefix         /opt
+set             vendor                amd
+
+set             app                   rochpl
+set             framework             rocm700
+set             version               7.0.0
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to environment paths\n"
+}
+
+module-whatis   "loads $app $version module"
+
+set             root                  $module_prefix/$vendor/$app
+
+prepend-path    PATH                  $root/build:$root/build/bin
+
+set prereq1     rocm/7.0.0
+set prereq2     $vendor/ucx/1.16.0
+set prereq3     $vendor/openmpi/5.0.3
+
+if { [module-info mode load] } {
+    if { ! [ is-loaded $prereq1 ] } {
+        module load $prereq1
+    }
+    if { ! [ is-loaded $prereq2 ] } {
+        module load $prereq2
+    }
+    if { ! [ is-loaded $prereq3 ] } {
+        module load $prereq3
+    }
+}
+
+if { [module-info mode remove ] } {
+    if { [ is-loaded $prereq1 ] } {
+        module unload $prereq1
+    }
+    if { [ is-loaded $prereq2 ] } {
+        module unload $prereq2
+    }
+    if { [ is-loaded $prereq3 ] } {
+        module unload $prereq3
+    }
+}
