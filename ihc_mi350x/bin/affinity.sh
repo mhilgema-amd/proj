@@ -9,6 +9,15 @@ NCORES=$(grep -ce '^processor' /proc/cpuinfo)
 NUMA_NODES=$(numactl --hardware | grep available: | awk '{print $2}')
 NGPUS=$(rocm-smi --showserial | grep "GPU" | wc -l)
 PPN=${OMPI_COMM_WORLD_LOCAL_SIZE}
+
+#
+# Check for SMT
+#
+HAVE_SMT=$( cat /sys/devices/system/cpu/smt/active )
+if [ ${HAVE_SMT} -eq 1 ]; then
+    NCORES=$(( NCORES / 2 ))
+fi
+
 export OMP_NUM_THREADS=$((NCORES / OMPI_COMM_WORLD_LOCAL_SIZE))
 
 MY_GPU=$((OMPI_COMM_WORLD_LOCAL_RANK % NGPUS))
