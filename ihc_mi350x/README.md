@@ -802,3 +802,101 @@ I picked the lowest values out of 50 runs:
 | Triad  | 4,718,558 |
 | Dot    | 4,362,454 |
 
+
+## 5.5	rocHPL
+
+rocHPL is a benchmark based on the HPL benchmark application, implemented 
+on top of AMD's ROCm Platform, runtime, and toolchains. rocHPL is created 
+using the HIP programming language and optimized for AMD's latest 
+discrete GPUs.
+
+If AGFHC is installed on the system, then you can skip this part as rocHPL 
+is bundled with AGFHC.
+
+rocHPL can be built as follows:
+
+```bash
+# Clone rocHPL using git
+git clone https://github.com/ROCm/rocHPL.git
+
+# Go to rocHPL directory
+cd rocHPL
+
+# Run install.sh script
+./install.sh
+```
+
+By default, UCX v1.16.0, and Open MPI v5.0.3 will be cloned and built in rocHPL/tpl. After building, the rochpl executable is placed in build/rochpl-install. If UCX and Open MPI are already installed on the system, then you can build rochpl using Cmake:
+
+```bash
+mkdir build && cd build
+export CXX=mpicxx
+
+cmake .. \
+    -DCMAKE_INSTALL_PREFIX=<your rochpl install location>
+    -DHPL_MPI_DIR=<your MPI root directory> \
+    -DROCM_PATH=/opt/rocm \
+    -DROCBLAS_PATH=/opt/rocm \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DHPL_PROGRESS_REPORT=ON \
+    -DHPL_DETAILED_TIMING=ON
+
+make
+make install
+```
+
+We recommend using the supplied mpirun_rochpl script. Alternatively, you can use your available mpirun launcher as follows:
+
+```bash
+mpirun \
+    –-bind-to none \
+    –-mca pml ucx 
+    -np 1 \
+    -x UCX_PROTO_ENABLE=y \
+    -x UCX_PROTO_INFO=n \
+    -x UCX_PROTO_ENABLE=y \
+    -x UCX_UNIFIED_MODE=y \
+    -x UCX_ROCM_COPY_LAT=2e-6 \
+    -x UCX_ROCM_IPC_MIN_ZCOPY=4096 \
+    -x UCX_RNDV_SCHEME=get_zcopy \
+    -x UCX_RNDV_THRESH=32768 \
+    affinity.sh \
+    rochpl –-NB 576 -N 176256 -P 1 -Q 1
+```
+
+The results on a single node with 8x MI350X GPUs are as follows:
+
+| Test    | P           | Q | NB |  N | Result (GFLOP/s) |
+| --------| --------    | --------| --------| --------| -------- |
+| 1 GPU   | 1           | 1 | 576 | 176256 | 47,286 |
+| 2 GPUs  | 1           | 2 | 576 | 248832 | 96,844 |
+| 4 GPUs  | 2           | 2 | 576 | 351936 | 187,680 |
+| 8 GPUs  | 2           | 4 | 576 | 497664 | 377,150 |
+
+## OSU micro-benchmarks
+
+The OSU Micro-benchmarks measure the performance of a wide range of
+point-to-point, single-sided, shared memory and collective MPI message
+types. You should build OSU for your target architecture with an MPI
+library of choice, and its build should contain ROCm support to use device
+memory for send and receive message buffers.
+
+The build recipe for a ROCm enabled version is as follows, assuming that
+compiler wrappers for MPI are available:
+
+```bash
+wget gosu-micro-benchmarks-7.5-1.tar.gz
+cd osu-micro-benchmarks-7.5.1
+
+export ROCM_PATH=/opt/rocm
+CC=mpicc CXX=mpicxx \
+    ./configure \
+    --prefix=<your OSU install directory> \
+    --with-hip=${ROCM_PATH} \
+    --enable-rocm=${ROCM_PATH} \
+    --with-rccl=${ROCM_PATH} \
+    --enable-rcclomb
+
+% make
+% make install
+```

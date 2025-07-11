@@ -1,0 +1,43 @@
+#%Module -*- tcl -*-
+##
+## rccl-tests modulefile
+##
+set             module_prefix       /opt
+set             app                 osu
+set             version             7.5.1
+set             mpi                 openmpi
+set             rocm                rocm700
+set             root                $module_prefix/$app/$mpi/$rocm/$version
+
+prepend-path    PATH                $root/libexec/mpi/collective
+prepend-path    PATH                $root/libexec/mpi/congestion
+prepend-path    PATH                $root/libexec/mpi/one-sided
+prepend-path    PATH                $root/libexec/mpi/pt2pt
+prepend-path    PATH                $root/libexec/mpi/startup
+prepend-path    PATH                $root/libexec/xccl/collective
+prepend-path    PATH                $root/libexec/xccl/pt2pt
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to your environment variables,"
+}
+
+set prereq1     rocm/7.0.0
+set prereq2     $mpi/$rocm/5.0.8
+
+if { [module-info mode load] } {
+    if { ! [ is-loaded $prereq1 ] } {
+        module load $prereq1
+    }
+    if { ! [ is-loaded $prereq2 ] } {
+        module load $prereq2
+    }
+}
+
+if { [module-info mode remove ] } {
+    if { [ is-loaded $prereq1 ] } {
+        module unload $prereq1
+    }
+    if { [ is-loaded $prereq2 ] } {
+        module unload $prereq2
+    }
+}
