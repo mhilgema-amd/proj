@@ -54,7 +54,7 @@ function setup_wrk_dirs ()
 function setup_make ()
 {
     cd ${BLD_DIR} || exit 1
-    export CXX=mpicxx
+    CC=mpicc CXX=mpicxx \
     ${WRK_DIR}/${APP_NAME}/configure  \
         --prefix=${INSTALL_PREFIX}/${VERSION} \
         --with-hip=${ROCM_PATH} \
