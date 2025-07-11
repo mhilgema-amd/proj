@@ -734,37 +734,71 @@ sudo cp $( find build/release/clients/staging -perm -o+x ) /opt/rocblas/rocm700/
 sudo cp build/release/clients/staging/*.yaml /opt/rocblas/rocm700/7.0.0/share
 ```
 
---- DO NOT USE ---
-This version does not natively support device kernels for MI350X, but we can add the offload target to the compiler:
+### 5.4.1 BabelStream qualification
+
+Build BabelStream tests from source using the official documentation or by running the commands below in your terminal:
 
 ```bash
-sed -i 's/\(.*TARGET_LIST_ROCM_6.3.*\)gfx942;\(.*\)/\1gfx942;gfx950;\2/g;s/\(.*TARGET_LIST_ROCM_6.3.*\)gfx942:xnack+\(.*\)/\1gfx942:xnack+;gfx950:xnack+\2/g' CMakeLists.txt
+git clone https://github.com/UoB-HPC/BabelStream.git
+cd BabelStream
+cmake -Bbuild -H. -DMODEL=hip -DCMAKE_CXX_COMPILER=hipcc
+cmake --build build
+export PATH=$PWD/build:$PATH
 ```
 
-Now start the build sequence:
+Running BabelStream on all eight 350X GPUs concurrently requires coordinated job launching and device identification as an argument to the hip-stream executable. AMD recommends MPI to orchestrate this, and the easiest way to run on the SUT is to create a script called wrapper.sh and populate it with the following lines:
 
 ```bash
-cmake 
+#!/bin/bash
+
+# Use the MPI rank to manage the device:
+hip-stream --device ${OMPI_COMM_WORLD_RANK} -n 50 -s 268435456 \
+   > log.babelstream.rank_${OMPI_COMM_WORLD_RANK} 2>&1
 ```
-```
-```
 
-
------ DO NOT USE ----
-RocBLAS has been merged into the [rocm-libaries](https://github.com/ROCm/rocm-libraries) repository. rocm-libraries is a monorepo. This repository consolidates multiple ROCm-related libraries and shared components into a single repository to streamline development, CI, and integration. The first set of libraries focuses on components required for building PyTorch.
-
-### 5.3.1.1 Building rocm-libaries
-
-Clone the GitHub repo:
+For your first benchmark run, execute the following command to assign proper permissions to the wrapper script:
 
 ```bash
-git clone https://github.com/ROCm/rocm-libraries.git
+chmod +x wrapper.sh
 ```
 
-Load your ROCm environment and build rocBLAS:
+To run the benchmark on all eight MI350X GPUs concurrently, execute the following command in the terminal:
 
 ```bash
-module load rocm/7.0.0
-cd rocm-libaries/projects/rocblas
+mpirun -np 8 ./wrapper.sh
 ```
------ DO NOT USE ----
+
+Expected output for the first MI350X GPU (truncated)
+
+```bash
+BabelStream
+Version: 5.0
+Implementation: HIP
+Running kernels 50 times
+Precision: double
+Array size: 2147.5 MB (=2.1 GB)
+Total size: 6442.5 MB (=6.4 GB)
+Using HIP device AMD Instinct MI350X
+Driver: 60550421
+Memory: DEFAULT
+Init: 0.519124 s (=12410.230478 MBytes/sec)
+Read: 0.094020 s (=68522.079790 MBytes/sec)
+Function    MBytes/sec  Min (sec)   Max         Average     
+Copy        5028393.719 0.00085     0.00090     0.00087     
+Mul         5078096.032 0.00085     0.00091     0.00087     
+Add         4891450.313 0.00132     0.00141     0.00138     
+Triad       4809583.065 0.00134     0.00140     0.00137     
+Dot         4384319.732 0.00098     0.00105     0.00099
+```
+
+This table lists the average Pass/Fail memory bandwidth for BabelStream benchmarking.
+I picked the lowest values out of 50 runs:
+
+| Function | Minimum Passing Score (MB/s) |
+| -------------- | --------------- |
+| Copy   | 5,026,392 |
+| Mul    | 4,992,273 |
+| Add    | 4,756,317 |
+| Triad  | 4,718,558 |
+| Dot    | 4,362,454 |
+
