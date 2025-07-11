@@ -1,0 +1,29 @@
+#%Module -*- tcl -*-
+##
+## CoralGemm modulefile
+##
+set             module_prefix       /opt
+set             app                 coralgemm
+set             version             git_fc0df98
+set             rocm                rocm700
+set             root                $module_prefix/$app/$rocm/$version
+
+prepend-path    PATH                $root/bin
+
+proc ModulesHelp { } {
+    puts stderr "\tAdds $app $version to your environment variables,"
+}
+
+set prereq1     rocm/7.0.0
+
+if { [module-info mode load] } {
+    if { ! [ is-loaded $prereq1 ] } {
+        module load $prereq1
+    }
+}
+
+if { [module-info mode remove ] } {
+    if { [ is-loaded $prereq1 ] } {
+        module unload $prereq1
+    }
+}
